@@ -9,42 +9,25 @@ const List = styled.section`
   flex-wrap: wrap;
 `;
 
-const FlexColum = styled.div`
+const FlexGrid = styled.div`
   flex: ${props => props.value || "1"};
   padding: 5px;
 `;
 
 class PostList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      postListSources: []
-    };
-  }
-
-  componentDidMount() {
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then(res => res.json())
-      .then(response => {
-        this.setState({
-          postListSources: response
-        });
-      });
-  }
-
   render() {
-    return this.state.postListSources.length ? (
+    return this.props.postListSources.length ? (
       <List>
-        {this.state.postListSources.map((v, i) => (
-          <FlexColum key={i}>
-            <Card key={i} text={v.body} title={v.title}  id={v.id} />
-          </FlexColum>
+        {this.props.postListSources.map((v, i) => (
+          <FlexGrid key={i}>
+            <Card key={i} text={v.body} title={v.title} id={v.id} />
+          </FlexGrid>
         ))}
       </List>
     ) : (
-      <FlexColum>
+      <FlexGrid>
         <Title>Cargando...</Title>
-      </FlexColum>
+      </FlexGrid>
     );
   }
 }

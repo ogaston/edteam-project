@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Button from "./Buttons"
-
+import Button from "./Buttons";
 
 const Container = styled.section`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -11,12 +10,11 @@ const Container = styled.section`
   padding: 1em 0.6em;
 `;
 
-
 const NavContainer = styled.nav`
-    display: flex;
-`
+  display: flex;
+`;
 
-const FlexColum = styled.div`
+const FlexGrid = styled.div`
   flex: ${props => props.value || "1"};
   padding: 5px;
   text-align: right;
@@ -26,11 +24,19 @@ const TopNav = () => {
   return (
     <Container>
       <NavContainer>
-        <FlexColum>EdTeam Logo</FlexColum>
-        <FlexColum value={4}>
+        <FlexGrid>
+          <img
+            src={
+              "https://drupal.ed.team/sites/default/files/inline-images/EDteam-isotipo.png"
+            }
+            alt={"Edteam Logo"}
+            width={"50px"}
+          />
+        </FlexGrid>
+        <FlexGrid value={4}>
           <Button link="/"> Inicio </Button>
           <Button link="/nuevo"> Nuevo + </Button>
-        </FlexColum>
+        </FlexGrid>
       </NavContainer>
     </Container>
   );

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Button from "../components/Buttons";
 import Modal from "../components/Modal";
+import PropType from "prop-types";
 
 const Container = styled.section`
   width: 70%;
@@ -14,7 +15,7 @@ const Container = styled.section`
   max-width: 400px;
 `;
 
-const FlexColum = styled.div`
+const FlexGrid = styled.div`
   flex: ${props => props.value || "1"};
   padding: 5px;
 `;
@@ -25,17 +26,19 @@ const FlexContainer = styled.div`
 `;
 
 const Input = styled.input`
-  border: 2px solid #ececec;
+  border: ${props => (props.readOnly ? "0" : "2px solid #ececec")};
   border-radius: 5px;
   padding: 0.6em 2em;
   color: gray;
+  background: ${props => (props.readOnly ? "#fbfbfb" : "white")};
 `;
 
 const TextBox = styled.textarea`
-  border: 2px solid #ececec;
+  border: ${props => (props.readOnly ? "0" : "2px solid #ececec")};
   border-radius: 5px;
   padding: 1.2em 2.4em;
   color: gray;
+  background: ${props => (props.readOnly ? "#fbfbfb" : "white")};
 `;
 
 class Form extends React.Component {
@@ -43,16 +46,14 @@ class Form extends React.Component {
     super(props);
     this.state = {
       title: "",
-      text: "",
-      showModal: false,
-      modalMsg: "La operación ha sido exitosa"
+      text: ""
     };
   }
 
   componentDidMount() {
     const { id, hook } = this.props;
     if (id) {
-      fetch(`https://jsonplaceholder.typicode.com/${hook}/${id}`)
+      fetch(`https://jsonplaceholder.typicode.com/${hook}`)
         .then(res => res.json())
         .then(response => {
           const { body, title } = response;
@@ -71,75 +72,78 @@ class Form extends React.Component {
   };
 
   closeModal = () => {
-    this.setState({ showModal: false });
+    this.props.onCloseModal();
+    if (this.props.method === "DELETE") {
+      this.goToHome();
+    }
   };
 
   resetForm = () => {
     this.setState({ title: "", text: "" });
   };
 
+  goToHome = () => {
+    this.props.history.push("/");
+  };
+
   makeRequest = () => {
-    const { hook, method } = this.props;
-    fetch(`https://jsonplaceholder.typicode.com/${hook}`, {
-      method
-    })
-      .then(res => res.json())
-      .then(response => {
-        if (response.id) {
-          this.resetForm();
-          this.setState({
-            showModal: true
-          });
-        }
-      })
-      .catch(e => {
-        this.setState({
-          showModal: true,
-          modalMsg: `Error: La petición falló - ${e.message}`
-        });
-      });
+    this.resetForm();
+    this.props.func(this.props.id);
   };
 
   render() {
     return (
       <Container>
-        <Modal showModal={this.state.showModal}>
-          <FlexColum value={3}>
-            <h2>{this.state.modalMsg}</h2>
-          </FlexColum>
-          <FlexColum>
+        <Modal showModal={this.props.showModal}>
+          <FlexGrid value={3}>
+            <h2>{this.props.modalMsg}</h2>
+          </FlexGrid>
+          <FlexGrid>
             <Button onClick={this.closeModal}>Cerrar</Button>
-          </FlexColum>
+          </FlexGrid>
         </Modal>
         <h1>{this.props.type} Publicación</h1>
+        {this.props.method === "DELETE" && (
+          <h4>Estás seguro que deseas eliminarlo?</h4>
+        )}
         <FlexContainer>
-          <FlexColum>
+          <FlexGrid>
             <Input
               placeholder="Titulo"
               onChange={this.handleInput("title")}
               value={this.state.title}
+              {...this.props.method === "DELETE" && { readOnly: true }}
             />
-          </FlexColum>
-          <FlexColum>
+          </FlexGrid>
+          <FlexGrid>
             <TextBox
               placeholder="Texto"
               onChange={this.handleInput("text")}
               value={this.state.text}
+              {...this.props.method === "DELETE" && { readOnly: true }}
             />
-          </FlexColum>
-          <FlexColum>
+          </FlexGrid>
+          <FlexGrid>
             <Button
               onClick={this.makeRequest}
-              primary
+              {...(this.props.method === "DELETE"
+                ? { danger: true }
+                : { primary: true })}
               disabled={!this.state.text || !this.state.title}
             >
               {this.props.type}
             </Button>
-          </FlexColum>
+          </FlexGrid>
         </FlexContainer>
       </Container>
     );
   }
 }
+
+Form.propTypes = {
+  text: PropType.string.isRequired,
+  title: PropType.string.isRequired,
+  id: PropType.number.isRequired
+};
 
 export default Form;

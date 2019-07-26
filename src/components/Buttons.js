@@ -1,7 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import PropType from "prop-types";
 
+/**
+ * Recibe un objeto props y devuelve el color de acuerdo a la propiedad existente { primary, danger o disabled }
+ */
 const colorSelector = props =>
   props.disabled
     ? "#8eb08f"
@@ -25,10 +29,23 @@ const StyledButton = styled.button`
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 `;
 
+/**
+ * Componente de DefaultButton
+ * 
+ * Renderiza un botón estilizado de acuerdo a las propiedades { primary, danger o disabled }
+ */
 const DefaultButton = ({ children, ...othersProps }) => (
   <StyledButton {...othersProps}>{children}</StyledButton>
 );
 
+
+
+/**
+ * Componente de Button
+ * 
+ * Renderiza un botón estilizado de acuerdo a las propiedades { primary, danger o disabled }
+ * Recibe {link} para utilizarlo para navegación
+ */
 const Button = ({ link, children, ...othersProps }) => {
   return link ? (
     <Link to={link}>
@@ -37,6 +54,12 @@ const Button = ({ link, children, ...othersProps }) => {
   ) : (
     <DefaultButton {...othersProps}>{children}</DefaultButton>
   );
+};
+
+
+Button.propTypes = {
+  link: PropType.string,
+  children: PropType.any.isRequired
 };
 
 export default Button;

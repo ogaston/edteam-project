@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Button from "./Buttons";
 import { Text, Title } from "./StyledText";
 
-const FlexColum = styled.div`
+const FlexGrid = styled.div`
   flex: ${props => props.value || "1"};
   padding: 5px;
 `;
@@ -27,32 +27,42 @@ const TextContainer = styled.div`
   flex-direction: column;
 `;
 
+/**
+ * Componente de Card
+ *
+ * Este renderiza las card por defecto del projecto
+ *
+ * @param {string} text
+ * @param {string} title
+ * @param {string} id
+ */
 const Card = ({ text, title, id }) => {
   return (
     <Container>
-      <FlexColum>
+      <FlexGrid>
         <TextContainer>
-          <FlexColum value={3}>
+          <FlexGrid value={3}>
             <Title>{title}</Title>
-          </FlexColum>
-          <FlexColum value={3}>
+          </FlexGrid>
+          <FlexGrid value={3}>
             <Text>{text}</Text>
-          </FlexColum>
-          <FlexColum>
+          </FlexGrid>
+          <FlexGrid>
             <Button link={`/actualizar/${id}`} primary>
               Editar
             </Button>
-            <Button>Eliminar</Button>
-          </FlexColum>
+            <Button link={`/eliminar/${id}`}>Eliminar</Button>
+          </FlexGrid>
         </TextContainer>
-      </FlexColum>
+      </FlexGrid>
     </Container>
   );
 };
 
 Card.propTypes = {
   text: PropType.string.isRequired,
-  title: PropType.string.isRequired
+  title: PropType.string.isRequired,
+  id: PropType.number.isRequired
 };
 
 export default Card;
