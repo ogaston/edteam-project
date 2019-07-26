@@ -30,7 +30,6 @@ class App extends React.Component {
               component={() => (
                 <Form
                   hook="posts"
-                  method="POST"
                   type="Nueva"
                   func={this.props.onCreatePost}
                   {...this.props}
@@ -42,9 +41,8 @@ class App extends React.Component {
               component={({ match }) => (
                 <Form
                   hook={`posts/${match.params.id}`}
-                  method="PUT"
                   type="Actualizar"
-                  id={match.params.id}
+                  id={+match.params.id}
                   func={this.props.onUpdatePost}
                   {...this.props}
                 />
@@ -55,9 +53,8 @@ class App extends React.Component {
               component={({ match, history }) => (
                 <Form
                   hook={`posts/${match.params.id}`}
-                  method="DELETE"
                   type="Eliminar"
-                  id={match.params.id}
+                  id={+match.params.id}
                   history={history}
                   func={this.props.onDeletePost}
                   {...this.props}

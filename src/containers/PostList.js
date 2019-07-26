@@ -1,17 +1,12 @@
 import React from "react";
 import Card from "../components/Card";
 import styled from "styled-components";
-import { Title } from "../components/StyledText";
+import { Title, FlexGrid } from "../components/Styled";
 
 const List = styled.section`
   display: flex;
   width: 100%;
   flex-wrap: wrap;
-`;
-
-const FlexGrid = styled.div`
-  flex: ${props => props.value || "1"};
-  padding: 5px;
 `;
 
 class PostList extends React.Component {

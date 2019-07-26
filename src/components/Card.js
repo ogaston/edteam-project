@@ -2,19 +2,11 @@ import React from "react";
 import PropType from "prop-types";
 import styled from "styled-components";
 import Button from "./Buttons";
-import { Text, Title } from "./StyledText";
+import { Text, Title, FlexGrid, Shadow } from "./Styled";
 
-const FlexGrid = styled.div`
-  flex: ${props => props.value || "1"};
-  padding: 5px;
-`;
-
-const Container = styled.section`
+const Container = styled(Shadow)`
   display: flex;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
   border-radius: 5px;
-  align-items: center;
   margin: 0.8em auto;
   min-height: 250px;
   min-width: 350px;

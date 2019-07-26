@@ -1,5 +1,6 @@
 import React from "react";
 import ReactModal from "react-modal";
+import PropType from "prop-types";
 
 const contentStyle = {
   width: "25%",
@@ -24,6 +25,11 @@ const Modal = ({ children, showModal }) => {
       {children}
     </ReactModal>
   );
+};
+
+Modal.propTypes = {
+  showModal: PropType.bool.isRequired,
+  children: PropType.any.isRequired
 };
 
 export default Modal;

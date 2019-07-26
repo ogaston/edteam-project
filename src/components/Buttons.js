@@ -45,6 +45,9 @@ const DefaultButton = ({ children, ...othersProps }) => (
  * 
  * Renderiza un botón estilizado de acuerdo a las propiedades { primary, danger o disabled }
  * Recibe {link} para utilizarlo para navegación
+ * 
+ * @param {string} link
+ * @param {any} children
  */
 const Button = ({ link, children, ...othersProps }) => {
   return link ? (
