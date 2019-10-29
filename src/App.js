@@ -19,14 +19,14 @@ class App extends React.Component {
           <TopNav />
           <div className="App" style={{ padding: "25px" }}>
             <Route
-              path="/"
+              path="/simple-react-project/"
               exact
               component={() => (
                 <PostList postListSources={this.props.posts} {...this.props} />
               )}
             />
             <Route
-              path="/nuevo"
+              path="/simple-react-project/nuevo"
               component={() => (
                 <Form
                   hook="posts"
@@ -37,7 +37,7 @@ class App extends React.Component {
               )}
             />
             <Route
-              path="/actualizar/:id"
+              path="/simple-react-project/actualizar/:id"
               component={({ match }) => (
                 <Form
                   hook={`posts/${match.params.id}`}
@@ -49,7 +49,7 @@ class App extends React.Component {
               )}
             />
             <Route
-              path="/eliminar/:id"
+              path="/simple-react-project/eliminar/:id"
               component={({ match, history }) => (
                 <Form
                   hook={`posts/${match.params.id}`}
