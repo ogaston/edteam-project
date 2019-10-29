@@ -1,8 +1,9 @@
 {
   "name": "react-simple-project",
-  "version": "0.1.0",
+  "version": "0.1.6",
   "private": true,
   "dependencies": {
+    "gh-pages": "^2.1.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-modal": "^3.9.1",
@@ -17,11 +18,14 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
+  "homepage": "https://ogaston.github.io/simple-react-app",
   "browserslist": {
     "production": [
       ">0.2%",
