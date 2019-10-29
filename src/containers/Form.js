@@ -3,7 +3,12 @@ import styled from "styled-components";
 import Button from "../components/Buttons";
 import Modal from "../components/Modal";
 import PropType from "prop-types";
-import { FlexGrid, FlexContainer, Container } from "../components/Styled"
+import {
+  FlexGrid,
+  FlexContainer,
+  Container,
+  Title
+} from "../components/Styled";
 
 const Input = styled.input`
   border: ${props => (props.readOnly ? "0" : "2px solid #ececec")};
@@ -32,7 +37,7 @@ class Form extends React.Component {
 
   componentDidMount() {
     if (this.props.id) {
-      this.getSelectedPost()
+      this.getSelectedPost();
     }
   }
 
@@ -49,7 +54,7 @@ class Form extends React.Component {
           text: body
         });
       });
-  }
+  };
 
   /**
    * Manejador de eventos input.
@@ -92,9 +97,8 @@ class Form extends React.Component {
     this.props.func(this.props.id);
   };
 
-
   isForDelete() {
-    return this.props.type === "Eliminar";         
+    return this.props.type === "Eliminar";
   }
 
   render() {
@@ -108,9 +112,11 @@ class Form extends React.Component {
             <Button onClick={this.closeModal}>Cerrar</Button>
           </FlexGrid>
         </Modal>
-        <h1>{this.props.type} Publicación</h1>
-        {this.isForDelete() && (
+        <Title>{this.props.type} Publicación</Title>
+        {this.isForDelete() ? (
           <h4>Estás seguro que deseas eliminarlo?</h4>
+        ) : (
+          <br />
         )}
         <FlexContainer>
           <FlexGrid>
@@ -118,7 +124,7 @@ class Form extends React.Component {
               placeholder="Titulo"
               onChange={this.handleInput("title")}
               value={this.state.title}
-              {...this.isForDelete() && { readOnly: true }}
+              {...(this.isForDelete() && { readOnly: true })}
             />
           </FlexGrid>
           <FlexGrid>
@@ -126,15 +132,13 @@ class Form extends React.Component {
               placeholder="Texto"
               onChange={this.handleInput("text")}
               value={this.state.text}
-              {...this.isForDelete() && { readOnly: true }}
+              {...(this.isForDelete() && { readOnly: true })}
             />
           </FlexGrid>
           <FlexGrid>
             <Button
               onClick={this.makeRequest}
-              {...(this.isForDelete()
-                ? { danger: true }
-                : { primary: true })}
+              {...(this.isForDelete() ? { danger: true } : { primary: true })}
               disabled={!this.state.text || !this.state.title}
             >
               {this.props.type}

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Button from "./Buttons";
-import { FlexGrid, Shadow } from "./Styled"
+import { FlexGrid, Shadow, LogoText } from "./Styled";
 
 const Container = styled(Shadow)`
   margin-bottom: 0.8em;
@@ -28,12 +28,13 @@ const TopNav = () => {
         <FlexGridCustom>
           <img
             src={
-              "https://drupal.ed.team/sites/default/files/inline-images/EDteam-isotipo.png"
+              "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xMS41IC0xMC4yMzE3NCAyMyAyMC40NjM0OCI+CiAgPHRpdGxlPlJlYWN0IExvZ288L3RpdGxlPgogIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIyLjA1IiBmaWxsPSIjNjFkYWZiIi8+CiAgPGcgc3Ryb2tlPSIjNjFkYWZiIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIi8+CiAgICA8ZWxsaXBzZSByeD0iMTEiIHJ5PSI0LjIiIHRyYW5zZm9ybT0icm90YXRlKDYwKSIvPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjApIi8+CiAgPC9nPgo8L3N2Zz4K"
             }
-            alt={"Edteam Logo"}
-            width={"50px"}
+            alt="React Logo"
+            width="50px"
           />
         </FlexGridCustom>
+        <LogoText>React Simple</LogoText>
         <FlexGridCustom value={4}>
           <Button link="/"> Inicio </Button>
           <Button link="/nuevo"> Nuevo + </Button>

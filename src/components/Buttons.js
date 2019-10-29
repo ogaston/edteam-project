@@ -8,9 +8,9 @@ import PropType from "prop-types";
  */
 const colorSelector = props =>
   props.disabled
-    ? "#8eb08f"
+    ? "#6da4b3"
     : props.primary
-    ? "#4caf50"
+    ? "#55c4e2"
     : props.danger
     ? "#af4c4c"
     : "#e9e9e9";
@@ -31,21 +31,19 @@ const StyledButton = styled.button`
 
 /**
  * Componente de DefaultButton
- * 
+ *
  * Renderiza un botón estilizado de acuerdo a las propiedades { primary, danger o disabled }
  */
 const DefaultButton = ({ children, ...othersProps }) => (
   <StyledButton {...othersProps}>{children}</StyledButton>
 );
 
-
-
 /**
  * Componente de Button
- * 
+ *
  * Renderiza un botón estilizado de acuerdo a las propiedades { primary, danger o disabled }
  * Recibe {link} para utilizarlo para navegación
- * 
+ *
  * @param {string} link
  * @param {any} children
  */
@@ -58,7 +56,6 @@ const Button = ({ link, children, ...othersProps }) => {
     <DefaultButton {...othersProps}>{children}</DefaultButton>
   );
 };
-
 
 Button.propTypes = {
   link: PropType.string,

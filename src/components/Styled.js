@@ -37,3 +37,9 @@ export const FlexContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+export const LogoText = styled.h3`
+  color: #55c4e2;
+  font-size: 1.3em;
+  line-height: 1;
+`;
