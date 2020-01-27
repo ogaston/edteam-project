@@ -26,7 +26,7 @@ class App extends React.Component {
               )}
             />
             <Route
-              path="/simple-react-project/nuevo"
+              path="simple-react-project/nuevo"
               component={() => (
                 <Form
                   hook="posts"
@@ -37,7 +37,7 @@ class App extends React.Component {
               )}
             />
             <Route
-              path="/simple-react-project/actualizar/:id"
+              path="simple-react-project/actualizar/:id"
               component={({ match }) => (
                 <Form
                   hook={`posts/${match.params.id}`}
@@ -49,7 +49,7 @@ class App extends React.Component {
               )}
             />
             <Route
-              path="/simple-react-project/eliminar/:id"
+              path="simple-react-project/eliminar/:id"
               component={({ match, history }) => (
                 <Form
                   hook={`posts/${match.params.id}`}
