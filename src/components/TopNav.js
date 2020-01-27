@@ -36,8 +36,8 @@ const TopNav = () => {
         </FlexGridCustom>
         <LogoText>React Simple</LogoText>
         <FlexGridCustom value={4}>
-          <Button link="/simple-react-project/"> Inicio </Button>
-          <Button link="/simple-react-project/nuevo"> Nuevo + </Button>
+          <Button link="simple-react-project/"> Inicio </Button>
+          <Button link="simple-react-project/nuevo"> Nuevo + </Button>
         </FlexGridCustom>
       </NavContainer>
     </Container>
