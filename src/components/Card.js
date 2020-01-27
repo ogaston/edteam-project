@@ -40,10 +40,10 @@ const Card = ({ text, title, id }) => {
             <Text>{text}</Text>
           </FlexGrid>
           <FlexGrid>
-            <Button link={`/simple-react-project/actualizar/${id}`} primary>
+            <Button link={`simple-react-project/actualizar/${id}`} primary>
               Editar
             </Button>
-            <Button link={`/simple-react-project/eliminar/${id}`}>
+            <Button link={`simple-react-project/eliminar/${id}`}>
               Eliminar
             </Button>
           </FlexGrid>
